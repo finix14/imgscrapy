@@ -20,6 +20,6 @@ Note:
 ------------
 -requests module needs to be installed for python. it can be installed by `pip install requests`.
 
--The script won't work if imgur does not send the zip file (which is the case with huge albums). The script however works well for albums containing ~100 pics. It fetches the zip file for the album and extracts it to '~/Imgur Dumps/{Album Title}/'
+-The script won't work if imgur does not send the zip file (which is the case with huge albums). The script however works well for popular albums cached by imgur. It fetches the zip file for the album and extracts it to '~/Imgur Dumps/{Album Title}/'
 
 
