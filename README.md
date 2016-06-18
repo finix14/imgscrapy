@@ -18,8 +18,8 @@ Just copy the url of the imgur album and enter it in the terminal as:
   
 Note:
 ------------
--requests module needs to be installed for python. it can be installed by `pip install requests`.
+- Requests module needs to be installed for python. it can be installed by `pip install requests`.
 
--Scraper downloads the pictures to '~/Imgur Dumps/{Album Title}/'
+- Scraper downloads the pictures to '~/Imgur Dumps/{Album Title}/'.
 
 
