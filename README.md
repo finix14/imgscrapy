@@ -1,5 +1,5 @@
 =====================================
-imgscrapy - Linux CLI Imgur Album Scraper
+imgscrapy - CLI Imgur Album Scraper
 =====================================
 
 How to install
@@ -24,6 +24,6 @@ Note:
 ------------
 - Requests module needs to be installed for python. it can be installed by `pip install requests`.
 
-- Scraper downloads the pictures to '~/Imgur Dumps/{Album Title}/'.
+- Scraper by downloads the pictures to `'~/{Default Download Location}/{Album Title}/'`.
 
 
