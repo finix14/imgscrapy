@@ -2,37 +2,35 @@
 from subprocess import call
 import sys,os, re, getpass, requests,json,pickle
 
-
-
 if len(sys.argv) == 2:
     try:
         filehandler = open('default_dir.pkl','r')
         dir = pickle.load(filehandler)
     except:
-        print "$$ Default Download Location not set."
-        dir = raw_input('&& Input the default location: ')
+        print "[!] Default Download Location not set."
+        dir = raw_input('[!] Input the default location: ')
         pickle_file = open('default_dir.pkl','w')
         pickle.dump(dir,pickle_file)
 elif len(sys.argv) == 3:
     if sys.argv[1] == '-d':
         pickle_file = open('default_dir.pkl','w')
         pickle.dump(sys.argv[2],pickle_file)
-        print '\n\n## Default download location set to "%s"' % sys.argv[2]
+        print '\n\n[+] Default download location set to "%s"' % sys.argv[2]
         sys.exit()
     dir = sys.argv[2]
 
 dir = os.path.expanduser(dir)
 
 if len(sys.argv) == 1:
-    print "\n$$ ERROR: Not enough parameters supplied"
+    print "\n[-] ERROR: Not enough parameters supplied"
     sys.exit()
 
 try:
     html = requests.get(sys.argv[1]).text
 except:
-    print "\n$$ ERROR: Invalid URL"
+    print "\n[-] ERROR: Invalid URL"
     sys.exit()
-title=re.search('<title>\s+(.*) - Album on Imgur</title>',html).group(1)
+title=re.search('<title>\s+(.*) - (?:Album on )?Imgur</title>',html).group(1)
 album_code = sys.argv[1][-5:]
 downloads = 'http://imgur.com/ajaxalbums/getimages/%s/hit.json?all=true' % album_code
 
@@ -41,11 +39,15 @@ dir = os.path.join(dir,title)
 if not os.path.exists(dir):
        os.makedirs(dir)
 os.chdir(dir)
-print '\n\n## Downloading to %s\n\n' % dir
+print '\n\n[+] Downloading to %s\n\n' % dir
 data = json.loads(requests.get(downloads).text)
-for img in data['data']['images']:
+try:
+    images = data['data']['images']
+except:
+    print "[-] ERROR: No Images Found"
+for img in images:
     filename = img['hash'] + img['ext']
     file = open( filename, 'w')
     downloaded = requests.get('http://i.imgur.com/%s' % filename).content
     file.write(downloaded)
-    print '## [Downloaded]: %s' % filename
+    print '[+] Downloaded: %s' % filename
