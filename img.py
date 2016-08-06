@@ -3,7 +3,9 @@ from subprocess import call
 import sys,os, re, getpass, requests,json,pickle
 
 if len(sys.argv) == 2:
-    os.chdir('/usr/local/bin/')
+    if not os.path.exists(os.path.expanduser('~/.imgscrapy')):
+        os.makedirs(directory)
+    os.chdir(os.path.expanduser('~/.imgscrapy'))
     try:
         filehandler = open('default_dir.pkl','r')
         dir = pickle.load(filehandler)
