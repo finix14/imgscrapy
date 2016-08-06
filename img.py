@@ -3,12 +3,13 @@ from subprocess import call
 import sys,os, re, getpass, requests,json,pickle
 
 if len(sys.argv) == 2:
+    os.chdir('/usr/local/bin/')
     try:
         filehandler = open('default_dir.pkl','r')
         dir = pickle.load(filehandler)
     except:
         print "[!] Default Download Location not set."
-        dir = raw_input('[!] Input the default location: ')
+        dir = raw_input('[!] Input the default location: ').strip("\'\" ")
         pickle_file = open('default_dir.pkl','w')
         pickle.dump(dir,pickle_file)
 elif len(sys.argv) == 3:
