@@ -24,6 +24,6 @@ Note:
 ------------
 - Requests module needs to be installed for python. it can be installed by `pip install requests`.
 
-- Scraper by downloads the pictures to `'~/{Default Download Location}/{Album Title}/'`.
+- Scraper by default, downloads the pictures to `'~/{Default Download Location}/{Album Title}/'`.
 
 
