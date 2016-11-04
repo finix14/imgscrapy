@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from subprocess import call
-import sys,os, re, getpass, requests,json,pickle
+import sys,os,re,getpass,requests,json,pickle
 directory = '~/.imgscrapy'
 if len(sys.argv) == 2:
     if not os.path.exists(os.path.expanduser(directory)):
@@ -48,11 +48,13 @@ try:
     images = data['data']['images']
 except:
     print "[-] ERROR: No Images Found"
-for img in images:
-    if img['ext'] == '.gif':
-        img['ext'] += 'v'
-    filename = img['hash'] + img['ext']
-    file = open( filename, 'w')
-    downloaded = requests.get('http://i.imgur.com/%s' % filename).content
-    file.write(downloaded)
-    print '[+] Downloaded: %s' % filename
+img_url = ''
+with open( 'list.txt', 'w') as file:
+    for img in images:
+        if img['ext'] == '.gif':
+            img['ext'] = '.mp4'
+        filename = img['hash'] + img['ext']
+        img_url += 'http://i.imgur.com/%s\n' % filename
+    file.write(img_url)
+os.system("wget -ci list.txt -nv; rm list.txt")
+print "[+] Completed Downloading"
