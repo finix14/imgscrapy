@@ -49,6 +49,8 @@ try:
 except:
     print "[-] ERROR: No Images Found"
 for img in images:
+    if img['ext'] == '.gif':
+        img['ext'] += 'v'
     filename = img['hash'] + img['ext']
     file = open( filename, 'w')
     downloaded = requests.get('http://i.imgur.com/%s' % filename).content
