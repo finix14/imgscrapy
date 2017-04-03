@@ -1,6 +1,5 @@
-=====================================
-imgscrapy - CLI Imgur Album Scraper
-=====================================
+# imgscrapy - CLI Imgur Album Scraper
+
 
 How to install
 ------------
