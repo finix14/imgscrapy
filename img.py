@@ -48,6 +48,7 @@ try:
     images = data['data']['images']
 except:
     print "[-] ERROR: No Images Found"
+    sys.exit()
 img_url = ''
 with open( 'list.txt', 'w') as file:
     for img in images:
