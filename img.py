@@ -34,7 +34,7 @@ except:
     print "\n[-] ERROR: Invalid URL"
     sys.exit()
 title=re.search('<title>\s+(.*) - (?:Album on )?Imgur</title>',html).group(1)
-album_code = sys.argv[1].split('/')[4]
+album_code = sys.argv[1].split('/')[-1]
 downloads = 'http://imgur.com/ajaxalbums/getimages/%s/hit.json?all=true' % album_code
 
 dir = os.path.join(dir,title) 
